@@ -1,0 +1,27 @@
+html {
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+.container {
+  border: 2px solid black;
+  width: 800px;
+  height: 800px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.box {
+  display: flex;
+  border: 1px solid red;
+  flex-direction: column;
+  width: calc(100% / var(--columns));
+  /* height: calc(100% / 16); */
+  aspect-ratio: 1 /1;
+}
