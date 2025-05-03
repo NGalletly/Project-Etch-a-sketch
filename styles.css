@@ -8,20 +8,62 @@ html {
   box-sizing: inherit;
 }
 
+body {
+  background-color: lightcyan;
+}
+
+.containerBody {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .container {
   border: 2px solid black;
-  width: 800px;
-  height: 800px;
-  margin: 0 auto;
+  width: 860px;
+  height: 860px;
+  margin: 25px 100px auto 320px;
   display: flex;
   flex-wrap: wrap;
 }
 
 .box {
+  background-color: azure;
   display: flex;
-  border: 1px solid red;
+  border: 1px solid gray;
   flex-direction: column;
   width: calc(100% / var(--columns));
   /* height: calc(100% / 16); */
   aspect-ratio: 1 /1;
+}
+
+.color {
+  background-color: black;
+}
+
+h1 {
+  text-align: center;
+  font-size: 60px;
+  color: darkred;
+  padding-top: 20px;
+}
+
+button {
+  font-size: 30px;
+  background-color: lightcoral;
+  color: black;
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 10px 15px;
+}
+
+.gridInputBtn {
+  display: flex;
+  justify-content: space-around;
+}
+
+.buttonPanel {
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
 }
