@@ -17,9 +17,11 @@ let cellCount = Math.pow(columns, 2);
 
 container.style.setProperty("--columns", columns);
 
-// boxes.classList.add("color");
+//First Grid initializer
 
-//DRAWING LOGIC
+createGrid(cellCount);
+
+//Etch-a-sketch drawing LOGIC
 
 let boxes = document.querySelectorAll(".box");
 
@@ -48,23 +50,29 @@ boxes.forEach((box) => {
     }
   });
 });
+//BUTTONS Programming
 
-//BUTTONS LOGIC
+//Clear grid function
 
-// <button class="gridInputBtn">Grid Size</button>
-// <button class="colorSwapBtn">Colour Swap</button>
-// <button class="clearGrid">Clear Grid</button>
-// let columns = prompt("How many rows?");
+function clearGrid() {
+  const element = document.querySelector(".container");
+  while (element.firstChild) {
+    element.removeChild(element.firstChild);
+  }
+}
 
+// Button Selectors
 let gridInputBtn = document.querySelector(".gridInputBtn");
 let colorSwapBtn = document.querySelector(".colorSwapBtn");
 let clearGridBtn = document.querySelector(".clearGridBtn");
 
+// Clear gris and input new grid dimensions
 gridInputBtn.addEventListener("click", () => {
-  console.log("grid input pressed");
+  clearGrid();
+  console.log("grid click");
   columns = prompt("How many rows?");
-  console.log(columns + " button");
   cellCount = Math.pow(columns, 2);
+  container.style.setProperty("--columns", columns);
   createGrid(cellCount);
 });
 
@@ -72,8 +80,10 @@ colorSwapBtn.addEventListener("click", () => {
   console.log("colour swap pressed");
 });
 
-clearGridBtn.addEventListener("click", () => {
-  console.log("clear grid pressed");
-});
+// Clear grid button
 
-createGrid(cellCount);
+boxes.forEach((box) => {
+  clearGridBtn.addEventListener("click", () => {
+    box.style.background = "azure";
+  });
+});
