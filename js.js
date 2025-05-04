@@ -14,42 +14,56 @@ function createGrid(num) {
 
 columns = 16;
 let cellCount = Math.pow(columns, 2);
-
 container.style.setProperty("--columns", columns);
 
-//First Grid initializer
+//Toggle
+let isToggled = false;
 
+//First Grid initializer
 createGrid(cellCount);
+initGrid();
+
+function initGrid() {
+  let boxes = document.querySelectorAll(".box");
+
+  let mouseDown = false;
+
+  container.addEventListener("mousedown", (event) => {
+    mouseDown = true;
+    event.target.style.background = isToggled ? "red" : "black";
+  });
+
+  container.addEventListener("mouseup", (event) => {
+    mouseDown = false;
+  });
+
+  container.addEventListener("mousemove", (event) => {
+    if (mouseDown) {
+      event.target.style.background = isToggled ? "red" : "black";
+    }
+  });
+
+  // boxes.forEach((box) => {
+  //   box.addEventListener("mousedown", () => {
+  //     box.style.background = isToggled ? "red" : "black";
+  //   });
+  // });
+
+  // boxes.forEach((box) => {
+  //   box.addEventListener("mousemove", () => {
+  //     if (mouseDown === true) {
+  //       box.style.background = isToggled ? "red" : "black";
+  //     }
+  //   });
+  // });
+}
 
 //Etch-a-sketch drawing LOGIC
 
-let boxes = document.querySelectorAll(".box");
+// let boxes = document.querySelectorAll(".box");
 
-let mouseDown = false;
+// Etch-a sketch logic end
 
-container.addEventListener("mousedown", () => {
-  mouseDown = true;
-  console.log("mousedown = true");
-});
-
-container.addEventListener("mouseup", () => {
-  mouseDown = false;
-  console.log("mouseup = false");
-});
-
-boxes.forEach((box) => {
-  box.addEventListener("mousedown", () => {
-    box.style.background = "black";
-  });
-});
-
-boxes.forEach((box) => {
-  box.addEventListener("mousemove", () => {
-    if (mouseDown === true) {
-      box.style.background = "black";
-    }
-  });
-});
 //BUTTONS Programming
 
 //Clear grid function
@@ -69,21 +83,168 @@ let clearGridBtn = document.querySelector(".clearGridBtn");
 // Clear gris and input new grid dimensions
 gridInputBtn.addEventListener("click", () => {
   clearGrid();
-  console.log("grid click");
   columns = prompt("How many rows?");
   cellCount = Math.pow(columns, 2);
   container.style.setProperty("--columns", columns);
   createGrid(cellCount);
+  initGrid();
+  isToggled = false;
+
+  // let boxes = document.querySelectorAll(".box");
+
+  // let mouseDown = false;
+
+  // container.addEventListener("mousedown", () => {
+  //   mouseDown = true;
+  // });
+
+  // container.addEventListener("mouseup", () => {
+  //   mouseDown = false;
+  // });
+
+  // boxes.forEach((box) => {
+  //   box.addEventListener("mousedown", () => {
+  //     box.style.background = "black";
+  //   });
+  // });
+
+  // boxes.forEach((box) => {
+  //   box.addEventListener("mousemove", () => {
+  //     if (mouseDown === true) {
+  //       box.style.background = "black";
+  //     }
+  //   });
+  // });
+  // Etch logic end
 });
 
-colorSwapBtn.addEventListener("click", () => {
-  console.log("colour swap pressed");
+//Colour Swap button
+
+colorSwapBtn.addEventListener("click", function () {
+  isToggled = !isToggled; // Toggle the boolean value
 });
+//   if (isToggled) {
+//     console.log("Toggled On");
+//     let mouseDown = false;
 
-// Clear grid button
+//     container.addEventListener("mousedown", () => {
+//       mouseDown = true;
+//     });
 
-boxes.forEach((box) => {
-  clearGridBtn.addEventListener("click", () => {
+//     container.addEventListener("mouseup", () => {
+//       mouseDown = false;
+//     });
+
+//     boxes.forEach((box) => {
+//       box.addEventListener("mousedown", () => {
+//         box.style.background = "red";
+//       });
+//     });
+
+//     boxes.forEach((box) => {
+//       box.addEventListener("mousemove", () => {
+//         if (mouseDown === true) {
+//           box.style.background = "red";
+//         }
+//       });
+//     });
+//   } else {
+//     console.log("Toggled Off");
+//     let mouseDown = false;
+
+//     container.addEventListener("mousedown", () => {
+//       mouseDown = true;
+//     });
+
+//     container.addEventListener("mouseup", () => {
+//       mouseDown = false;
+//     });
+
+//     boxes.forEach((box) => {
+//       box.addEventListener("mousedown", () => {
+//         box.style.background = "black";
+//       });
+//     });
+
+//     boxes.forEach((box) => {
+//       box.addEventListener("mousemove", () => {
+//         if (mouseDown === true) {
+//           box.style.background = "black";
+//         }
+//       });
+//     });
+//   }
+// });
+
+clearGridBtn.addEventListener("click", () => {
+  let boxes = getBoxes();
+  boxes.forEach((box) => {
     box.style.background = "azure";
   });
+
+  isToggled = false;
 });
+
+function getBoxes() {
+  return document.querySelectorAll(".box");
+}
+
+// clearGridBtn.addEventListener("click", () => {
+//   clearGrid();
+//   console.log(columns, cellCount);
+//   createGrid(cellCount);
+
+//   let boxes = document.querySelectorAll(".box");
+
+//   if (isToggled) {
+//     console.log("Toggled On");
+//     let mouseDown = false;
+
+//     container.addEventListener("mousedown", () => {
+//       mouseDown = true;
+//     });
+
+//     container.addEventListener("mouseup", () => {
+//       mouseDown = false;
+//     });
+
+//     boxes.forEach((box) => {
+//       box.addEventListener("mousedown", () => {
+//         box.style.background = "red";
+//       });
+//     });
+
+//     boxes.forEach((box) => {
+//       box.addEventListener("mousemove", () => {
+//         if (mouseDown === true) {
+//           box.style.background = "red";
+//         }
+//       });
+//     });
+//   } else {
+//     console.log("Toggled Off");
+//     let mouseDown = false;
+
+//     container.addEventListener("mousedown", () => {
+//       mouseDown = true;
+//     });
+
+//     container.addEventListener("mouseup", () => {
+//       mouseDown = false;
+//     });
+
+//     boxes.forEach((box) => {
+//       box.addEventListener("mousedown", () => {
+//         box.style.background = "black";
+//       });
+//     });
+
+//     boxes.forEach((box) => {
+//       box.addEventListener("mousemove", () => {
+//         if (mouseDown === true) {
+//           box.style.background = "black";
+//         }
+//       });
+//     });
+//   }
+// });
