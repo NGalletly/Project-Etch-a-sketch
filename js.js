@@ -11,6 +11,21 @@ function createGrid(num) {
   }
 }
 
+function recreateGrid() {
+  if (columns >= 1 && columns <= 100) {
+    clearGrid();
+    cellCount = Math.pow(columns, 2);
+    container.style.setProperty("--columns", columns);
+    createGrid(cellCount);
+    initGrid();
+    isToggled = false;
+  } else {
+    alert("Invalid input, please enter a number between 1 and 100");
+    columns = prompt("How many rows?");
+    recreateGrid(columns);
+  }
+}
+
 columns = 16;
 let cellCount = Math.pow(columns, 2);
 container.style.setProperty("--columns", columns);
@@ -69,14 +84,24 @@ let clearGridBtn = document.querySelector(".clearGridBtn");
 
 // Clear grid and input new grid dimensions
 gridInputBtn.addEventListener("click", () => {
-  clearGrid();
   columns = prompt("How many rows?");
-  cellCount = Math.pow(columns, 2);
-  container.style.setProperty("--columns", columns);
-  createGrid(cellCount);
-  initGrid();
-  isToggled = false;
+  recreateGrid();
 });
+// gridInputBtn.addEventListener("click", () => {
+//   columns = prompt("How many rows?");
+
+//   if (columns >= 1 && columns <= 100) {
+//     clearGrid();
+
+//     cellCount = Math.pow(columns, 2);
+//     container.style.setProperty("--columns", columns);
+//     createGrid(cellCount);
+//     initGrid();
+//     isToggled = false;
+//   } else {
+//     alert("Invalid input, please enter a number between 1 and 100");
+//   }
+// });
 
 //Colour Swap button
 
