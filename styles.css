@@ -20,7 +20,7 @@ body {
 
 .container {
   border: 2px solid black;
-  width: 550 px;
+  width: 550px;
   height: 550px;
   margin: 15px 70px auto 260px;
   display: flex;
